@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/src/services/NewsService.dart';
 import 'package:provider/provider.dart';
+
+import 'tab1page.dart';
+import 'tab2page.dart';
 
 class TabsPage extends StatelessWidget {
   @override
@@ -18,13 +22,15 @@ class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<_NavegacionModel>(context);
+    final newService = Provider.of<NewService>(context);
 
     return BottomNavigationBar(
       currentIndex: navegacionModel.paginaActual,
       onTap: (i) => navegacionModel.paginaActual = i,
       items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline), title: Text("Para ti")),
+            icon: Icon(Icons.person_outline), title: Text("Para ti")
+            ),
         BottomNavigationBarItem(
             icon: Icon(Icons.public), title: Text("Encabezados")),
       ],
@@ -42,12 +48,8 @@ class _Paginas extends StatelessWidget {
       // physics: BouncingScrollPhysics(),
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        Container(
-          color: Colors.red,
-        ),
-        Container(
-          color: Colors.green,
-        )
+        Tab1Page(),
+        Tab2Page()
       ],
     );
   }
